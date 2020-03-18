@@ -11,7 +11,7 @@ def write(dic):
             f.write( str(cnt)+":"+str(i)+"\n" )
             cnt += 1
 
-dataset = "att48"
+dataset = "a280"
 
 ioh = IOHandle()
 tspdata = ioh.readTsp("../dataset/%s.tsp"%dataset)
@@ -22,8 +22,8 @@ tspdataopt = ioh.readTour("../dataset/%s.opt.tour"%dataset)
 cityNum = int( tspdata["DIMENSION"] )
 generations = 500
 
-pointSwap = PSO(n = 2*cityNum, length = cityNum, pgraph = tspdata, ppossibility = 1/cityNum, gpossibility = 1/cityNum)
-p = pointSwap.runPointSwap(generations)
+# pointSwap = PSO(n = 2*cityNum, length = cityNum, pgraph = tspdata, ppossibility = 1/cityNum, gpossibility = 1/cityNum)
+# p = pointSwap.runPointSwap(generations)
 
 rando = PSO(n = 2*cityNum, length = cityNum, pgraph = tspdata, ppossibility = 1/cityNum, gpossibility = 1/cityNum)
 r = rando.runRandom(generations)
