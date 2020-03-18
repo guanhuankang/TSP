@@ -62,7 +62,7 @@ EDGE_WEIGHT_TYPE : ATT
 
 官方提供的**最优解**的路程和是**33523.70850743559**。
 
-![](/home/kangba/TSP/code/result/PSO-Point_SwapS&Random600-n=2.png)
+![](code/result/PSO-Point_SwapS&Random600-n=2.png)
 
 
 
@@ -114,9 +114,9 @@ $$
 
 **选择2** 选择1下，GA算法收敛速度较慢，改用选择2进行。选择2按照适应值升序排序，选取前n个进入下一代。对比图如下：（上图是使用选择1，下图使用选择2，其余不变）
 
-![](/home/kangba/TSP/code/result/GA&PSO-Point_SwapS&Random2000-n=2.png)
+![](code/result/GA&PSO-Point_SwapS&Random2000-n=2.png)
 
-![](/home/kangba/TSP/code/result/GA&PSO-Point_SwapS&Random2000-n=2 GA-faster.png)
+![](code/result/GA&PSO-Point_SwapS&Random2000-n=2 GA-faster.png)
 
 ## 2.2 点序列粒子群算法和遗传算法总结
 
@@ -141,7 +141,7 @@ GA算法后部收敛过慢，前半部分收敛效果很好，总体远优于当
 
 下图是500代的结果：
 
-![](/home/kangba/TSP/code/result/GA&PSO-Point_SwapS&Random500-n=2 GA-faster.png)
+![](code/result/GA&PSO-Point_SwapS&Random500-n=2 GA-faster.png)
 
 
 
@@ -163,7 +163,7 @@ TYPE : TSP
 DIMENSION : 48
 EDGE_WEIGHT_TYPE : ATT
 
-![](/home/kangba/TSP/code/result/GA&PSO-Point_SwapS&Random2000-n=2 GA-faster.png)
+![](code/result/GA&PSO-Point_SwapS&Random2000-n=2 GA-faster.png)
 
 
 
