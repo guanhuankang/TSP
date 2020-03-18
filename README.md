@@ -116,7 +116,7 @@ $$
 
 ![](code/result/GA&PSO-Point_SwapS&Random2000-n=2.png)
 
-![](code/result/GA&PSO-Point_SwapS&Random2000-n=2 GA-faster.png)
+![](code/result/GA&PSO-Point_SwapS&Random2000-n=2GA-faster.png)
 
 ## 2.2 点序列粒子群算法和遗传算法总结
 
@@ -141,7 +141,7 @@ GA算法后部收敛过慢，前半部分收敛效果很好，总体远优于当
 
 下图是500代的结果：
 
-![](code/result/GA&PSO-Point_SwapS&Random500-n=2 GA-faster.png)
+![](code/result/GA&PSO-Point_SwapS&Random500-n=2GA-faster.png)
 
 
 
@@ -163,7 +163,7 @@ TYPE : TSP
 DIMENSION : 48
 EDGE_WEIGHT_TYPE : ATT
 
-![](code/result/GA&PSO-Point_SwapS&Random2000-n=2 GA-faster.png)
+![](code/result/GA&PSO-Point_SwapS&Random2000-n=2GA-faster.png)
 
 
 
