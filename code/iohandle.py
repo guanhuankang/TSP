@@ -14,7 +14,7 @@ class IOHandle:
 				elif line.strip() == "EOF":
 					break;
 				else: ## data
-					self.dic["data"].append( list(map(int,line.split())) )
+					self.dic["data"].append( list(map(float,line.split())) )
 		return self.dic
 
 	def readTour(self, filename):
@@ -29,7 +29,7 @@ class IOHandle:
 				elif line.strip() == "EOF":
 					break;
 				else: ## data
-					self.dic["data"].append( int(line) )
+					self.dic["data"].append( float(line) )
 		return self.dic
 		pass
 

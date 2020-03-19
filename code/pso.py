@@ -80,7 +80,6 @@ class PSO:
 		self.particles = []
 		for i in range(self.n):
 			self.particles.append( Particle(self.length) )
-
 		self.gbest = self.findBest(self.particles+[self.gbest])
 	
 	def GAStep(self):
