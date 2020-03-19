@@ -1,0 +1,4 @@
+Point-Swap O(Tnmm)
+GA O(Tnm)
+Random O(Tnm)
+
