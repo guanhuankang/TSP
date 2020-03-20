@@ -19,7 +19,7 @@ class Particle:
 	def setRandomSeq(self, n = 0):## fix the first city eq 1
 		n = max(n, self.length)
 		self.seq = [i for i in range(1,n+1)]
-		for i in range(1,n): ## shuffle algorithm
+		for i in range(n): ## shuffle algorithm
 			self.swap(i, random.randint(i,n-1), 1);
 
 	def getSeq(self):

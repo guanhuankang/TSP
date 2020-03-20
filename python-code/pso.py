@@ -72,7 +72,8 @@ class PSO:
 			if self.fitness(p)<self.fitness(p.pbest):
 				p.pbest = p.copy()
 
-		self.gbest = self.findBest(self.particles+[self.gbest])
+		# self.gbest = self.findBest(self.particles+[self.gbest])
+		self.gbest = self.findBest(self.particles)
 
 	def randomStep(self):
 		self.generations = self.generations + 1

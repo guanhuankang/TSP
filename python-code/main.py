@@ -4,7 +4,7 @@ from pso import PSO
 from particle import Particle
 
 
-dataset = "a280"
+dataset = "att48"
 
 def write(dic):
     with open("result/"+str(int(time.time())) + dic["label"] + dataset,"w") as f:
@@ -21,7 +21,7 @@ tspdataopt = ioh.readTour("../dataset/%s.opt.tour"%dataset)
 # tspdataopt = ioh.readTour("../dataset/tspdata.opt.tour")
 
 cityNum = int( tspdata["DIMENSION"] )
-generations = 2000
+generations = 500
 
 pointSwap = PSO(n = 2*cityNum, length = cityNum, pgraph = tspdata, ppossibility = 1/cityNum, gpossibility = 1/cityNum)
 p = pointSwap.runPointSwap(generations)
