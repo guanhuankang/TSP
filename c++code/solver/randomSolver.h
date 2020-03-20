@@ -54,6 +54,7 @@ public:
     void run(int T = 500){
         generation = 1;
 
+        double totTime = 0.0;
         while(generation<T){
             clock_t start = clock();
 
@@ -62,8 +63,9 @@ public:
 
             clock_t end = clock();
             double t = (double)(end - start)/(double)CLOCKS_PER_SEC;
-            printf("Random generation %d cost:%lf fps:%lf n:%d left:%lf sec\r",\
-             generation, G->cost(findBest()), 1.0/t, n, (T-generation)*t);
+            totTime += t;
+            printf("Random generation %d cost:%lf fps:%lf n:%d left:%lf sec tot:%lf sec\r",\
+             generation, G->cost(findBest()), 1.0/t, n, (T-generation)*t, totTime);
             fflush(stdout);
         }
     }

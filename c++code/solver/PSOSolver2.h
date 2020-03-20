@@ -87,6 +87,7 @@ public:
     void run(int T = 500){
         generation = 1;
 
+        double totTime = 0.0;
         while(generation<T){
             clock_t start = clock();
 
@@ -95,8 +96,9 @@ public:
 
             clock_t end = clock();
             double t = (double)(end - start)/(double)CLOCKS_PER_SEC;
-            printf("PSO2 generation %d cost:%lf fps:%lf n:%d left:%lf sec %d\r",\
-             generation, gbv, 1.0/t, n, (T-generation)*t, G->isValid(gbest));
+            totTime += t;
+            printf("PSO2 generation %d cost:%lf fps:%lf n:%d left:%lf sec %d tot: %lf sec\r",\
+             generation, gbv, 1.0/t, n, (T-generation)*t, G->isValid(gbest), totTime);
             fflush(stdout);
         }
     }
