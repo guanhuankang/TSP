@@ -32,23 +32,30 @@ public:
         string line;
         bool isNum = false;
         cityNum = 0;
+        stringstream ss;
         while(getline(tsp, line)){
-            if( equ(line, 0, 6, "COMMENT") ){
+            if( line.length()>=7 && equ(line, 0, 6, "COMMENT") ){
                 name = line;
-            }else if( equ(line, 0, 8, "DIMENSION") ){
-                stringstream ss;
+            }else if( line.length()>=9 && equ(line, 0, 8, "DIMENSION") ){
+                string tmp;
+                ss.clear();
                 ss << line;
-                ss >> line >> line >> cityNum;
+                ss >> line >> tmp >> cityNum;
+                if(isdigit(tmp[0])){
+                    ss.clear();
+                    ss << tmp;
+                    ss >> cityNum;
+                }
                 x = vector<double>(cityNum+1);
                 y = vector<double>(cityNum+1);
-            }else if( equ(line, 0, 2, "EOF") ){
+            }else if( line.length()>=3 && equ(line, 0, 2, "EOF") ){
                 break;
-            }else if( equ(line, 0, 17, "NODE_COORD_SECTION") ){
+            }else if( line.length()>=18 && equ(line, 0, 17, "NODE_COORD_SECTION") ){
                 isNum = true;
             }else if(isNum){
                 int id;
                 double _x, _y;
-                stringstream ss;
+                ss.clear();
                 ss << line;
                 ss >> id >> _x >> _y;
                 x[ id ] = _x;
@@ -110,9 +117,9 @@ public:
         }
         double sum = 0;
         for(int i=2;i<=solution.length;i++){
-            sum += dist(solution[i], solution[i-1]);
+            sum += edges[ solution[i] ][ solution[i-1] ];
         }
-        sum += dist(solution[1], solution[solution.length]);
+        sum += edges[ solution[1] ][ solution[solution.length] ];
         return sum;
     }
 

@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <cstdio>
 #include <ctime>
+#include <queue>
 
 #include "../list.h"
 #include "../Random.h"
@@ -14,6 +15,7 @@ using namespace std;
 class GASolver{
 public:
     vector< List<int> > population;//base 0
+    List<int> gbest;
     Graph* G;
     double ppossibility, gpossibility;
     int n, generation;
@@ -73,9 +75,18 @@ public:
         n = population.size();
         
         //choose 2
+        double val[n];
+        for(int i=0;i<n;i++){
+            val[i] = G->cost(population[i]);
+            population[i].length = i;
+        }
         sort(population.begin(), population.end(), [&](List<int> A, List<int> B){
-            return (G->cost(A)) < (G->cost(B));
+            // return (G->cost(A)) < (G->cost(B));
+            return val[A.length] < val[B.length];
         } );
+        for(int i=0;i<n;i++){
+            population[i].length = m;
+        }
 
         int nn = n - n/2;
         for(int i=0;i<nn;i++){
@@ -100,8 +111,13 @@ public:
         return best;
     }
 
-    void run(int T = 500){
+    vector<double> run(int T = 500){
         generation = 1;
+        vector<double> vec;
+        vec.clear();
+        gbest = findBest();
+        double gbv = G->cost(gbest);
+        vec.push_back(gbv);
 
         double totTime = 0.0;
         while(generation<T){
@@ -111,10 +127,17 @@ public:
             clock_t end = clock();
             double t = (double)(end - start)/(double)CLOCKS_PER_SEC;
             totTime += t;
+            double tmp = G->cost(findBest());
+            if(tmp < gbv){
+                gbv = tmp;
+                gbest = findBest();
+            }
+            vec.push_back(gbv);
             printf("GA generation %d cost:%lf fps:%lf n:%d left:%lf sec tot: %lf sec\r",\
-             generation, G->cost(findBest()), 1.0/t, n, (T-generation)*t, totTime);
+             generation, gbv, 1.0/t, n, (T-generation)*t, totTime);
             fflush(stdout);
         }
+        return vec;
     }
 };
 

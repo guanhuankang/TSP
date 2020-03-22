@@ -123,9 +123,9 @@ $$
 
 **选择2** 选择1下，GA算法收敛速度较慢，改用选择2进行。选择2按照适应值升序排序，选取前n个进入下一代。对比图如下：（上图是使用选择1，下图使用选择2，其余不变）
 
-![](code/result/GA&PSO-Point_SwapS&Random2000-n=2.png)
+![](python-code/result/GA&PSO-Point_SwapS&Random2000-n=2.png)
 
-![](code/result/GA&PSO-Point_SwapS&Random2000-n=2GA-faster.png)
+![](python-code/result/GA&PSO-Point_SwapS&Random2000-n=2GA-faster.png)
 
 ## 2.2 点序列粒子群算法和遗传算法总结
 
@@ -150,7 +150,7 @@ GA算法后部收敛过慢，前半部分收敛效果很好，总体远优于当
 
 下图是500代的结果：
 
-![](code/result/GA&PSO-Point_SwapS&Random500-n=2GA-faster.png)
+![](python-code/result/GA&PSO-Point_SwapS&Random500-n=2GA-faster.png)
 
 
 
@@ -158,7 +158,7 @@ GA算法后部收敛过慢，前半部分收敛效果很好，总体远优于当
 
 # 3. TSP问题-改进的粒子群算法
 
-## 3.1 改进的粒子群算法
+## 3.1 改进的粒子群算法-PSO-v2
 
 由于PSO算法较快陷入局部解，参考GA算法的交叉和变异算子增加粒子的多样性。粒子群迭代更新公式修改为：
 $$
@@ -227,8 +227,8 @@ $$
 $$
 迭代公式可以根据上述定义进行计算：x^{t+1} = x^{t} + (1-\beta)\cdot\frac{c_1*\alpha_1*pbest}{c_2*\alpha_2*gbest} \\
 参数确定： \beta = 0.10 \\
-c_1 = 0.5 , \ \ \ \alpha_1 = 随机值0-1 \\
-c_2 = 0.5 , \ \ \ \alpha_2 = 随机值0-1 \\
+c_1 = 0.4 , \ \ \ \alpha_1 = 随机值0-1 \\
+c_2 = 0.6 , \ \ \ \alpha_2 = 随机值0-1 \\
 $$
 
 $$
@@ -259,7 +259,13 @@ E --> C
 
 ## 3.3 实验结果分析
 
+实验包括 随机生成(Random)，遗传算法(GA)，基于点交换的粒子群算法(PSO-v1)，改进的粒子群算法(PSO-v2) 四个部分。随机生成的方法是对照组。
 
+点交换的粒子群算法出现过早陷入局部解的问题。遗传算法在TSP问题中表现较好，不足是尾部收敛过慢，后期依赖变异操作来产生更好的解。基于遗传算法和粒子群算法，提出的改进后的粒子群算法PSO-v2，修改了粒子群的迭代更新公式。重新定义加法，乘法，点乘，除法等。在群体趋于一致性时，乘除操作可以跳出局部区域，寻找全局最优解。
+
+
+
+数据测试结果见4.数据测试部分。
 
 
 
@@ -273,7 +279,9 @@ TYPE : TSP
 DIMENSION : 48
 EDGE_WEIGHT_TYPE : ATT
 
-![](code/result/GA&PSO-Point_SwapS&Random2000-n=2GA-faster.png)
+
+
+
 
 
 

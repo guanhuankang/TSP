@@ -45,7 +45,6 @@ public:
     double step(){
         Random random;
         double gbv = G->cost(gbest);
-        
         for(int i=0;i<n;i++){
             double alpha_1 = random.rand();
             double alpha_2 = random.rand();
@@ -84,14 +83,19 @@ public:
         return best;
     }
 
-    void run(int T = 500){
+    vector<double> run(int T = 500){
         generation = 1;
+        
+        vector<double> vec;
+        vec.clear();
+        vec.push_back(G->cost(gbest));
 
         double totTime = 0.0;
         while(generation<T){
             clock_t start = clock();
 
             double gbv = step();
+            vec.push_back(gbv);
             generation++;
 
             clock_t end = clock();
@@ -101,6 +105,8 @@ public:
              generation, gbv, 1.0/t, n, (T-generation)*t, G->isValid(gbest), totTime);
             fflush(stdout);
         }
+
+        return vec;
     }
 };
 

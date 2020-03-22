@@ -14,6 +14,7 @@ using namespace std;
 class RandomSolver{
 public:
     vector< List<int> > population;//base 0
+    List<int> gbest;
     Graph* G;
     int n, generation;
 
@@ -51,8 +52,14 @@ public:
         return best;
     }
 
-    void run(int T = 500){
+    vector<double> run(int T = 500){
         generation = 1;
+        vector<double> vec;
+        vec.clear();
+
+        gbest = findBest();
+        double gbv = G->cost(gbest);
+        vec.push_back(gbv);
 
         double totTime = 0.0;
         while(generation<T){
@@ -64,10 +71,17 @@ public:
             clock_t end = clock();
             double t = (double)(end - start)/(double)CLOCKS_PER_SEC;
             totTime += t;
+            double tmp = G->cost(findBest());
+            if(tmp < gbv){
+                gbv = tmp;
+                gbest = findBest();
+            }
+            vec.push_back(gbv);
             printf("Random generation %d cost:%lf fps:%lf n:%d left:%lf sec tot:%lf sec\r",\
-             generation, G->cost(findBest()), 1.0/t, n, (T-generation)*t, totTime);
+             generation, gbv, 1.0/t, n, (T-generation)*t, totTime);
             fflush(stdout);
         }
+        return vec;
     }
 };
 
